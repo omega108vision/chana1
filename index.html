@@ -253,6 +253,7 @@
             font-size: 0.9em;
         }
         
+        /* Адаптивные таблицы для мобильных устройств */
         @media (max-width: 768px) {
             .container {
                 padding: 30px 20px;
@@ -270,12 +271,86 @@
                 padding: 10px;
             }
             
-            table {
-                font-size: 0.85em;
+            /* Скрываем обычную таблицу */
+            table, thead, tbody, th, td, tr {
+                display: block;
             }
             
-            th, td {
-                padding: 8px 10px;
+            /* Скрываем заголовок таблицы */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            tr {
+                margin-bottom: 20px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                padding: 15px;
+            }
+            
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: left;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                font-weight: 600;
+                color: #667eea;
+            }
+            
+            /* Строки с подзаголовками */
+            td[colspan] {
+                padding-left: 15px;
+                background: #f0f0f0;
+                font-weight: 600;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            
+            td[colspan]:before {
+                content: "";
+            }
+            
+            /* Итоговые строки */
+            .total-row td {
+                background: #e7f3ff;
+                font-weight: 600;
+                border-radius: 5px;
+            }
+            
+            /* Специальное оформление для финальной строки */
+            tr[style*="background: linear-gradient"] td {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-radius: 5px;
+                font-size: 1.1em;
+            }
+            
+            tr[style*="background: linear-gradient"] td:before {
+                color: white;
+            }
+            
+            .metric-highlight {
+                font-size: 1.1em;
+                padding: 15px;
+            }
+            
+            .week-block {
+                padding: 20px 15px;
+            }
+            
+            p {
+                text-align: left;
             }
         }
     </style>
@@ -314,118 +389,118 @@
                     <td colspan="4" style="background: #f0f0f0; font-weight: 600;">СБОР БАЗЫ (3 недели)</td>
                 </tr>
                 <tr>
-                    <td>Вирусные Reels (2-3 штуки)</td>
-                    <td>800K-1.5M просмотров</td>
-                    <td>0.5% клик</td>
-                    <td><em>Digital Marketer: средний CTR на social media 0.5-1%</em></td>
+                    <td data-label="Этап">Вирусные Reels (2-3 штуки)</td>
+                    <td data-label="Цифры">800K-1.5M просмотров</td>
+                    <td data-label="Конверсия">0.5% клик</td>
+                    <td data-label="Обоснование"><em>Digital Marketer: средний CTR на social media 0.5-1%</em></td>
                 </tr>
                 <tr>
-                    <td>Клики по ссылке</td>
-                    <td>4,000-7,500</td>
-                    <td>—</td>
-                    <td>—</td>
+                    <td data-label="Этап">Клики по ссылке</td>
+                    <td data-label="Цифры">4,000-7,500</td>
+                    <td data-label="Конверсия">—</td>
+                    <td data-label="Обоснование">—</td>
                 </tr>
                 <tr>
-                    <td>Скачали лид-магнит</td>
-                    <td>2,000-3,750</td>
-                    <td>50%</td>
-                    <td><em>HubSpot: конверсия landing page среднее 26-50%</em></td>
+                    <td data-label="Этап">Скачали лид-магнит</td>
+                    <td data-label="Цифры">2,000-3,750</td>
+                    <td data-label="Конверсия">50%</td>
+                    <td data-label="Обоснование"><em>HubSpot: конверсия landing page среднее 26-50%</em></td>
                 </tr>
                 <tr>
-                    <td>Stories + органика</td>
-                    <td>+1,500-2,500</td>
-                    <td>—</td>
-                    <td><em>Активное ядро 10K × 15-25%</em></td>
+                    <td data-label="Этап">Stories + органика</td>
+                    <td data-label="Цифры">+1,500-2,500</td>
+                    <td data-label="Конверсия">—</td>
+                    <td data-label="Обоснование"><em>Активное ядро 10K × 15-25%</em></td>
                 </tr>
                 <tr class="total-row">
-                    <td><strong>ИТОГО БАЗА</strong></td>
-                    <td><strong>3,500-6,250</strong></td>
-                    <td colspan="2"><strong>Берем для расчета: 4,500 лидов</strong></td>
+                    <td data-label="Этап"><strong>ИТОГО БАЗА</strong></td>
+                    <td data-label="Цифры"><strong>3,500-6,250</strong></td>
+                    <td colspan="2" data-label="Обоснование"><strong>Берем для расчета: 4,500 лидов</strong></td>
                 </tr>
                 <tr>
                     <td colspan="4" style="background: #f0f0f0; font-weight: 600;">РЕГИСТРАЦИЯ НА ВЕБИНАР</td>
                 </tr>
                 <tr>
-                    <td>Регистраций</td>
-                    <td>675-1,125</td>
-                    <td>15-18%</td>
-                    <td><em>Jeff Walker PLF data: 15-20% конверсия прогретой базы</em></td>
+                    <td data-label="Этап">Регистраций</td>
+                    <td data-label="Цифры">675-1,125</td>
+                    <td data-label="Конверсия">15-18%</td>
+                    <td data-label="Обоснование"><em>Jeff Walker PLF data: 15-20% конверсия прогретой базы</em></td>
                 </tr>
                 <tr class="total-row">
-                    <td><strong>Берем:</strong></td>
-                    <td><strong>850 регистраций</strong></td>
-                    <td><strong>~19%</strong></td>
-                    <td>—</td>
+                    <td data-label="Этап"><strong>Берем:</strong></td>
+                    <td data-label="Цифры"><strong>850 регистраций</strong></td>
+                    <td data-label="Конверсия"><strong>~19%</strong></td>
+                    <td data-label="Обоснование">—</td>
                 </tr>
                 <tr>
                     <td colspan="4" style="background: #f0f0f0; font-weight: 600;">ВЕБИНАР</td>
                 </tr>
                 <tr>
-                    <td>Пришло на вебинар</td>
-                    <td>340-425</td>
-                    <td>40-50%</td>
-                    <td><em>Webinar статистика: явка 40-50% при напоминаниях</em></td>
+                    <td data-label="Этап">Пришло на вебинар</td>
+                    <td data-label="Цифры">340-425</td>
+                    <td data-label="Конверсия">40-50%</td>
+                    <td data-label="Обоснование"><em>Webinar статистика: явка 40-50% при напоминаниях</em></td>
                 </tr>
                 <tr class="total-row">
-                    <td><strong>Берем:</strong></td>
-                    <td><strong>380 участников</strong></td>
-                    <td><strong>45%</strong></td>
-                    <td>—</td>
+                    <td data-label="Этап"><strong>Берем:</strong></td>
+                    <td data-label="Цифры"><strong>380 участников</strong></td>
+                    <td data-label="Конверсия"><strong>45%</strong></td>
+                    <td data-label="Обоснование">—</td>
                 </tr>
                 <tr>
                     <td colspan="4" style="background: #f0f0f0; font-weight: 600;">ИНТЕНСИВ €39</td>
                 </tr>
                 <tr>
-                    <td>Купили интенсив</td>
-                    <td>38-57</td>
-                    <td>10-15%</td>
-                    <td><em>Russell Brunson: Tripwire конверсия 10-15% с вебинара</em></td>
+                    <td data-label="Этап">Купили интенсив</td>
+                    <td data-label="Цифры">38-57</td>
+                    <td data-label="Конверсия">10-15%</td>
+                    <td data-label="Обоснование"><em>Russell Brunson: Tripwire конверсия 10-15% с вебинара</em></td>
                 </tr>
                 <tr class="total-row">
-                    <td><strong>Берем:</strong></td>
-                    <td><strong>45 покупок</strong></td>
-                    <td><strong>12%</strong></td>
-                    <td>—</td>
+                    <td data-label="Этап"><strong>Берем:</strong></td>
+                    <td data-label="Цифры"><strong>45 покупок</strong></td>
+                    <td data-label="Конверсия"><strong>12%</strong></td>
+                    <td data-label="Обоснование">—</td>
                 </tr>
                 <tr class="total-row">
-                    <td colspan="3"><strong>Выручка интенсив:</strong></td>
-                    <td><strong>€1,755</strong></td>
+                    <td colspan="3" data-label="Этап"><strong>Выручка интенсив:</strong></td>
+                    <td data-label="Сумма"><strong>€1,755</strong></td>
                 </tr>
                 <tr>
                     <td colspan="4" style="background: #f0f0f0; font-weight: 600;">ФЛАГМАНСКИЙ КУРС €700</td>
                 </tr>
                 <tr>
-                    <td>Купили флагман</td>
-                    <td>13-18</td>
-                    <td>30-40%</td>
-                    <td><em>Amy Porterfield: конверсия в core offer 30-50% от tripwire</em></td>
+                    <td data-label="Этап">Купили флагман</td>
+                    <td data-label="Цифры">13-18</td>
+                    <td data-label="Конверсия">30-40%</td>
+                    <td data-label="Обоснование"><em>Amy Porterfield: конверсия в core offer 30-50% от tripwire</em></td>
                 </tr>
                 <tr class="total-row">
-                    <td><strong>Берем:</strong></td>
-                    <td><strong>15 покупок</strong></td>
-                    <td><strong>33%</strong></td>
-                    <td>—</td>
+                    <td data-label="Этап"><strong>Берем:</strong></td>
+                    <td data-label="Цифры"><strong>15 покупок</strong></td>
+                    <td data-label="Конверсия"><strong>33%</strong></td>
+                    <td data-label="Обоснование">—</td>
                 </tr>
                 <tr class="total-row">
-                    <td colspan="3"><strong>Выручка флагман:</strong></td>
-                    <td><strong>€10,500</strong></td>
+                    <td colspan="3" data-label="Этап"><strong>Выручка флагман:</strong></td>
+                    <td data-label="Сумма"><strong>€10,500</strong></td>
                 </tr>
                 <tr>
                     <td colspan="4" style="background: #f0f0f0; font-weight: 600;">ДОПРОДАЖИ (+20%)</td>
                 </tr>
                 <tr>
-                    <td>Дополнительно</td>
-                    <td>3 покупки</td>
-                    <td>—</td>
-                    <td><em>Статистика: follow-up увеличивает продажи на 20-30%</em></td>
+                    <td data-label="Этап">Дополнительно</td>
+                    <td data-label="Цифры">3 покупки</td>
+                    <td data-label="Конверсия">—</td>
+                    <td data-label="Обоснование"><em>Статистика: follow-up увеличивает продажи на 20-30%</em></td>
                 </tr>
                 <tr class="total-row">
-                    <td colspan="3"><strong>Выручка допродажи:</strong></td>
-                    <td><strong>€2,100</strong></td>
+                    <td colspan="3" data-label="Этап"><strong>Выручка допродажи:</strong></td>
+                    <td data-label="Сумма"><strong>€2,100</strong></td>
                 </tr>
                 <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 1.1em;">
-                    <td colspan="3"><strong>ИТОГО ВЫРУЧКА:</strong></td>
-                    <td><strong>€14,355</strong></td>
+                    <td colspan="3" data-label="Этап"><strong>ИТОГО ВЫРУЧКА:</strong></td>
+                    <td data-label="Сумма"><strong>€14,355</strong></td>
                 </tr>
             </tbody>
         </table>
@@ -495,32 +570,32 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Минимум</strong></td>
-                    <td>3,500</td>
-                    <td>10-12</td>
-                    <td><strong>€8,000-€10,000</strong></td>
-                    <td>Воронка не отлажена</td>
+                    <td data-label="Сценарий"><strong>Минимум</strong></td>
+                    <td data-label="База лидов">3,500</td>
+                    <td data-label="Продаж флагмана">10-12</td>
+                    <td data-label="Выручка"><strong>€8,000-€10,000</strong></td>
+                    <td data-label="Условия">Воронка не отлажена</td>
                 </tr>
                 <tr>
-                    <td><strong>Консервативный</strong></td>
-                    <td>4,500</td>
-                    <td>15-18</td>
-                    <td><strong>€14,000-€16,000</strong></td>
-                    <td>Базовое исполнение</td>
+                    <td data-label="Сценарий"><strong>Консервативный</strong></td>
+                    <td data-label="База лидов">4,500</td>
+                    <td data-label="Продаж флагмана">15-18</td>
+                    <td data-label="Выручка"><strong>€14,000-€16,000</strong></td>
+                    <td data-label="Условия">Базовое исполнение</td>
                 </tr>
                 <tr>
-                    <td><strong>Реалистичный</strong></td>
-                    <td>6,000-8,000</td>
-                    <td>25-35</td>
-                    <td><strong>€22,000-€32,000</strong></td>
-                    <td>Нормальная работа</td>
+                    <td data-label="Сценарий"><strong>Реалистичный</strong></td>
+                    <td data-label="База лидов">6,000-8,000</td>
+                    <td data-label="Продаж флагмана">25-35</td>
+                    <td data-label="Выручка"><strong>€22,000-€32,000</strong></td>
+                    <td data-label="Условия">Нормальная работа</td>
                 </tr>
                 <tr class="total-row">
-                    <td><strong>Оптимальный</strong></td>
-                    <td>10,000-12,000</td>
-                    <td>45-65</td>
-                    <td><strong>€40,000-€60,000</strong></td>
-                    <td>Отличное исполнение</td>
+                    <td data-label="Сценарий"><strong>Оптимальный</strong></td>
+                    <td data-label="База лидов">10,000-12,000</td>
+                    <td data-label="Продаж флагмана">45-65</td>
+                    <td data-label="Выручка"><strong>€40,000-€60,000</strong></td>
+                    <td data-label="Условия">Отличное исполнение</td>
                 </tr>
             </tbody>
         </table>
@@ -707,28 +782,28 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>1-3</td>
-                    <td>Инвестиции</td>
-                    <td>−€400-600 (фиксированная часть)</td>
+                    <td data-label="Неделя">1-3</td>
+                    <td data-label="Откуда">Инвестиции</td>
+                    <td data-label="Сумма">−€400-600 (фиксированная часть)</td>
                 </tr>
                 <tr>
-                    <td>4</td>
-                    <td>Интенсив</td>
-                    <td>+€1,400-€2,900</td>
+                    <td data-label="Неделя">4</td>
+                    <td data-label="Откуда">Интенсив</td>
+                    <td data-label="Сумма">+€1,400-€2,900</td>
                 </tr>
                 <tr>
-                    <td>6</td>
-                    <td>Флагман</td>
-                    <td>+€8,400-€18,000</td>
+                    <td data-label="Неделя">6</td>
+                    <td data-label="Откуда">Флагман</td>
+                    <td data-label="Сумма">+€8,400-€18,000</td>
                 </tr>
                 <tr>
-                    <td>6</td>
-                    <td>Допродажи</td>
-                    <td>+€2,100-€4,500</td>
+                    <td data-label="Неделя">6</td>
+                    <td data-label="Откуда">Допродажи</td>
+                    <td data-label="Сумма">+€2,100-€4,500</td>
                 </tr>
                 <tr class="total-row">
-                    <td colspan="2"><strong>ИТОГО чистая прибыль</strong></td>
-                    <td><strong>€11,500-€24,800</strong></td>
+                    <td colspan="2" data-label="Неделя"><strong>ИТОГО чистая прибыль</strong></td>
+                    <td data-label="Сумма"><strong>€11,500-€24,800</strong></td>
                 </tr>
             </tbody>
         </table>
